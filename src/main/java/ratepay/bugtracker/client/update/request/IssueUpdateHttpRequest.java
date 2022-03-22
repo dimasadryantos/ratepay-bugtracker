@@ -1,6 +1,6 @@
-package ratepay.bugtracker.usecase.update;
+package ratepay.bugtracker.client.update.request;
 
-public class IssueUpdateRequest {
+public class IssueUpdateHttpRequest {
 
     private Long issueId;
 

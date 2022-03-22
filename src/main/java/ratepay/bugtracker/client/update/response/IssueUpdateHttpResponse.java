@@ -1,8 +1,8 @@
-package ratepay.bugtracker.usecase.update;
+package ratepay.bugtracker.client.update.response;
 
-public class IssueUpdateResponse {
+public class IssueUpdateHttpResponse {
+
     private boolean success;
-
 
     public boolean isSuccess() {
         return success;

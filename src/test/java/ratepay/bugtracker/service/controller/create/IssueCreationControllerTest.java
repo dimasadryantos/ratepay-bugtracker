@@ -1,4 +1,5 @@
-package ratepay.bugtracker.service.controller;
+package ratepay.bugtracker.service.controller.create;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import ratepay.bugtracker.client.create.request.IssueCreationHttpRequest;
-import ratepay.bugtracker.service.controller.create.IssueCreationController;
 import ratepay.bugtracker.service.exception.BadRequestException;
 import ratepay.bugtracker.usecase.create.IssueCreationInputBoundary;
 import ratepay.bugtracker.usecase.create.IssueCreationRequest;
@@ -35,9 +35,7 @@ class IssueCreationControllerTest {
     @Test
     void itShouldThrowExceptions() {
         IssueCreationHttpRequest httpRequest = getIssueCreationHttpRequest();
-
-
-        doThrow(BadRequestException.class).when(useCase).create(any(), any());
+        doThrow(new RuntimeException()).when(useCase).create(any(), any());
         assertThatThrownBy(() -> issueCreationController.create(httpRequest))
                 .isInstanceOf(BadRequestException.class).hasMessageContaining("Invalid request , Please input correct request");
     }

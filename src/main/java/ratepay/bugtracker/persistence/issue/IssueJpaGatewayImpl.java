@@ -1,8 +1,7 @@
 package ratepay.bugtracker.persistence.issue;
 
-import ratepay.bugtracker.service.exception.NoDataFoundException;
-
 import java.util.List;
+import java.util.Optional;
 
 public class IssueJpaGatewayImpl implements IssueJpaGateway {
 
@@ -26,6 +25,11 @@ public class IssueJpaGatewayImpl implements IssueJpaGateway {
     @Override
     public Issue updateIssue(Long issueId) {
         return null;
+    }
+
+    @Override
+    public Optional<Issue> findById(Long issueId) {
+        return issueRepository.findById(issueId);
     }
 
 

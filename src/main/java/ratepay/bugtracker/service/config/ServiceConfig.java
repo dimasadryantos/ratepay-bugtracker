@@ -7,6 +7,8 @@ import ratepay.bugtracker.usecase.create.IssueCreationInputBoundary;
 import ratepay.bugtracker.usecase.create.IssueCreationUseCase;
 import ratepay.bugtracker.usecase.detail.IssueDetailInputBoundary;
 import ratepay.bugtracker.usecase.detail.IssueDetailUseCase;
+import ratepay.bugtracker.usecase.update.IssueUpdateInputBoundary;
+import ratepay.bugtracker.usecase.update.IssueUpdateUseCase;
 
 @Configuration
 public class ServiceConfig {
@@ -19,6 +21,11 @@ public class ServiceConfig {
     @Bean
     public IssueDetailInputBoundary detailUseCase(IssueJpaGateway issueJpaGateway) {
         return new IssueDetailUseCase(issueJpaGateway);
+    }
+
+    @Bean
+    public IssueUpdateInputBoundary updateUseCase(IssueJpaGateway issueJpaGateway) {
+        return new IssueUpdateUseCase(issueJpaGateway);
     }
 
 
