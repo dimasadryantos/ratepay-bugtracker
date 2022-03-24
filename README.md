@@ -21,7 +21,7 @@ Endpoint =  POST  /v1/issues
 Response code = 201 created 
 
 	{
-	"issueType" : " bug",
+	"issueType" : "BUG",
 	"summary"  : "Hot Fix Production",
 	"description" : "User not able to do transaction"
 	}
@@ -31,26 +31,26 @@ Response code = 201 created
 
 Endpoint = GET /v1/issues
 Response code = 200 ok 
-
+NoDataFound = code 404
 
    {
 
    	"issues": 
 			[
 			   	{
-				"issueId" : "JIRA-123",
+				"issueId" : "1",
+				"issueType" : "BUG",
 				"summary": "hot fix production",
 				"description":"Please fix this issue",
-				"createdDate":"02-03-2022"
 				},
 
 				{
-				"issueId" : "JIRA-456",
-				"summary": "hot fix Dev",
-				"description":"Please fix this issue",
-				"createdDate":"02-03-2022"
+				"issueId" : "2",
+				"issueType" : "TASK",
+				"summary": "Create module A",
+				"description":"Create service A",
 				}
-	        ]
+	              ]
    }
 
 🚀 Update
@@ -60,10 +60,10 @@ Response code = 200 ok
 
 
 				{
-				"issueId" : "JIRA-123",
-				"summary": "hot fix production",
-				"description":"Please fix this issue",
-				"createdDate":"02-03-2022"
+				"issueId" : "2",
+				"issueType" : "TASK",
+				"summary": "Create module A",
+				"description":"Create service A",
 				}
 
 ```
@@ -146,5 +146,4 @@ In this project You will:
 
 Thank you!
 Kind Regards , Dimas Adriyanto s
-```
 
