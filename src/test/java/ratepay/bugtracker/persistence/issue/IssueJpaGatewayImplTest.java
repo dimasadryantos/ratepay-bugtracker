@@ -30,10 +30,11 @@ class IssueJpaGatewayImplTest {
 
     @Test
     void itShouldSaveIssue() {
-        Issue issue = Issue.builder(1L)
-                .setIssueType(ISSUE_TYPE)
-                .setSummary(SUMMARY)
-                .setDescription(DESCRIPTION).build();
+        Issue issue = Issue.builder()
+                .issueId(1L)
+                .issueType(ISSUE_TYPE)
+                .summary(SUMMARY)
+                .description(DESCRIPTION).build();
 
         issueJpaGateway.save(issue);
 

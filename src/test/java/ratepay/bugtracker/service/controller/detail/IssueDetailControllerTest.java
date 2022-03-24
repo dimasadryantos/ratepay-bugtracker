@@ -66,8 +66,8 @@ class IssueDetailControllerTest {
 
     private List<Issue> constructIssue() {
         return List.of(
-                Issue.builder(1L).setIssueType("BUG").setSummary("Prod bug").setDescription("Fix bug on module").build(),
-                Issue.builder(2L).setIssueType("TASK").setSummary("Create module").setDescription("Create new feature").build(),
-                Issue.builder(2L).setIssueType("BUG").setSummary("Dev bug").setDescription("Fix bug on module").build());
+                Issue.builder().issueId(1L).issueType("BUG").summary("Prod bug").description("Fix bug on module").build(),
+                Issue.builder().issueId(2L).issueType("TASK").summary("Create module").description("Create new feature").build(),
+                Issue.builder().issueId(3L).issueType("BUG").summary("Dev bug").description("Fix bug on module").build());
     }
 }

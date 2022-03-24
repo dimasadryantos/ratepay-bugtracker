@@ -1,9 +1,11 @@
 package ratepay.bugtracker.persistence.issue;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import ratepay.bugtracker.persistence.AuditTrail;
+import ratepay.bugtracker.usecase.create.IssueCreationRequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @NoArgsConstructor
+@Builder
 @Data
 @Table(name = "issue")
 public class Issue extends AuditTrail implements Serializable {
@@ -44,38 +47,9 @@ public class Issue extends AuditTrail implements Serializable {
         this.description = description;
     }
 
-    public static IssueBuilder builder(Long issueId) {
-        return new IssueBuilder(issueId);
-    }
-
-    public static class IssueBuilder {
-        private final Long issueId;
-        private String issueType;
-        private String summary;
-        private String description;
-
-        public IssueBuilder(Long issueId) {
-            this.issueId = issueId;
-        }
-
-        public IssueBuilder setIssueType(String issueType) {
-            this.issueType = issueType;
-            return this;
-        }
-
-        public IssueBuilder setSummary(String summary) {
-            this.summary = summary;
-            return this;
-        }
-
-        public IssueBuilder setDescription(String description) {
-            this.description = description;
-            return this;
-        }
-
-        public Issue build() {
-            return new Issue(issueId, issueType, summary, description);
-        }
-
+    public static Issue buildCreation(IssueCreationRequest request) {
+        return Issue.builder().issueType(request.getIssueType())
+                .summary(request.getSummary())
+                .description(request.getDescription()).build();
     }
 }

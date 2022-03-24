@@ -13,9 +13,7 @@ import ratepay.bugtracker.usecase.create.IssueCreationInputBoundary;
 import ratepay.bugtracker.usecase.create.IssueCreationRequest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -32,13 +30,6 @@ class IssueCreationControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void itShouldThrowExceptions() {
-        IssueCreationHttpRequest httpRequest = getIssueCreationHttpRequest();
-        doThrow(new RuntimeException()).when(useCase).create(any(), any());
-        assertThatThrownBy(() -> issueCreationController.create(httpRequest))
-                .isInstanceOf(BadRequestException.class).hasMessageContaining("Invalid request , Please input correct request");
-    }
 
     private IssueCreationHttpRequest getIssueCreationHttpRequest() {
         IssueCreationHttpRequest httpRequest =

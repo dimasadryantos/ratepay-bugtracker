@@ -1,13 +1,10 @@
 package ratepay.bugtracker.usecase.create;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class IssueCreationResponse {
-    private final boolean success;
-
-    public IssueCreationResponse(boolean success) {
-        this.success = success;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
+    private boolean success;
 }

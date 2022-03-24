@@ -21,5 +21,4 @@ public class AuditTrail {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-
 }

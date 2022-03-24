@@ -1,18 +1,17 @@
 package ratepay.bugtracker.usecase.update;
 
+import lombok.RequiredArgsConstructor;
 import ratepay.bugtracker.persistence.issue.Issue;
 import ratepay.bugtracker.persistence.issue.IssueJpaGateway;
 import ratepay.bugtracker.service.exception.NoDataFoundException;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class IssueUpdateUseCase implements IssueUpdateInputBoundary {
 
     private final IssueJpaGateway jpaGateway;
 
-    public IssueUpdateUseCase(IssueJpaGateway jpaGateway) {
-        this.jpaGateway = jpaGateway;
-    }
 
     @Override
     public void update(IssueUpdateRequest request, IssueUpdateOutputBoundary outputBoundary) throws NoDataFoundException {

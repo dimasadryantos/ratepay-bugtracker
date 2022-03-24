@@ -1,5 +1,10 @@
 package ratepay.bugtracker.usecase.update;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class IssueUpdateRequest {
 
     private Long issueId;
@@ -10,36 +15,4 @@ public class IssueUpdateRequest {
 
     private String description;
 
-
-    public Long getIssueId() {
-        return issueId;
-    }
-
-    public void setIssueId(Long issueId) {
-        this.issueId = issueId;
-    }
-
-    public String getIssueType() {
-        return issueType;
-    }
-
-    public void setIssueType(String issueType) {
-        this.issueType = issueType;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

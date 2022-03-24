@@ -1,5 +1,6 @@
 package ratepay.bugtracker.service.controller.update;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,13 +13,11 @@ import ratepay.bugtracker.usecase.update.IssueUpdateInputBoundary;
 import ratepay.bugtracker.usecase.update.IssueUpdateRequest;
 
 @RestController
+@RequiredArgsConstructor
 public class IssueUpdateController {
 
     private final IssueUpdateInputBoundary useCase;
 
-    public IssueUpdateController(IssueUpdateInputBoundary useCase) {
-        this.useCase = useCase;
-    }
 
     @PutMapping(value = "/v1/issues")
     @ResponseStatus(HttpStatus.OK)

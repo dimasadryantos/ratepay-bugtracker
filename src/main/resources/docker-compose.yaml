@@ -1,0 +1,22 @@
+version: "2"
+
+networks:
+  ratepay-network:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - ratepay-network
+    restart: unless-stopped
+    volumes:
+      - ./craete_issue_schema.sql:/docker-entrypoint-initdb.d/craete_issue_schema.sql
+    environment:
+      POSTGRES_USER: dimas
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ratepay
+    depends_on:
+      - postgress

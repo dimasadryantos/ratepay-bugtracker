@@ -1,19 +1,15 @@
 package ratepay.bugtracker.usecase.detail;
 
+import lombok.Getter;
+import lombok.Setter;
 import ratepay.bugtracker.persistence.issue.Issue;
 
 import java.util.List;
 
+@Getter
+@Setter
 public class IssueDetailResponse {
 
     private List<Issue> issues;
 
-
-    public List<Issue> getIssues() {
-        return issues;
-    }
-
-    public void setIssues(List<Issue> issues) {
-        this.issues = issues;
-    }
 }

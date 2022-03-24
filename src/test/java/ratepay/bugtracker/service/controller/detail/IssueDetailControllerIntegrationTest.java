@@ -48,8 +48,8 @@ class IssueDetailControllerIntegrationTest {
     }
 
     private void doSaveIssue() {
-        Issue issue = Issue.builder(1L).setIssueType("TASK").setSummary("Create new module").setDescription("Create new module payroll").build();
-        Issue issue2 = Issue.builder(2L).setIssueType("BUG").setSummary("Fix prod issue").setDescription("Fix bug on module payroll").build();
+        Issue issue = Issue.builder().issueId(1L).issueType("TASK").summary("Create new module").description("Create new module payroll").build();
+        Issue issue2 = Issue.builder().issueId(2L).issueType("BUG").summary("Fix prod issue").description("Fix bug on module payroll").build();
         repository.save(issue);
         repository.save(issue2);
     }

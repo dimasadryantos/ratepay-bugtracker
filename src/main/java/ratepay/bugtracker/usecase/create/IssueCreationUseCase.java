@@ -1,15 +1,14 @@
 package ratepay.bugtracker.usecase.create;
 
+import lombok.RequiredArgsConstructor;
 import ratepay.bugtracker.persistence.issue.Issue;
 import ratepay.bugtracker.persistence.issue.IssueJpaGateway;
 
+@RequiredArgsConstructor
 public class IssueCreationUseCase implements IssueCreationInputBoundary {
 
     private final IssueJpaGateway issueJpaGateway;
 
-    public IssueCreationUseCase(IssueJpaGateway issueJpaGateway) {
-        this.issueJpaGateway = issueJpaGateway;
-    }
 
     @Override
     public void create(IssueCreationRequest request, IssueCreationOutputBoundary outputBoundary) {
@@ -18,15 +17,14 @@ public class IssueCreationUseCase implements IssueCreationInputBoundary {
     }
 
     private void doConstructResponse(IssueCreationOutputBoundary outputBoundary, boolean saveIssue) {
-        outputBoundary.present(new IssueCreationResponse(saveIssue));
+        IssueCreationResponse response = new IssueCreationResponse();
+        response.setSuccess(saveIssue);
+        outputBoundary.present(response);
     }
 
     private boolean doSaveIssue(IssueCreationRequest request) {
         try {
-            Issue issue = new Issue();
-            issue.setDescription(request.getDescription());
-            issue.setIssueType(request.getIssueType());
-            issue.setSummary(request.getSummary());
+            Issue issue = Issue.buildCreation(request);
             issueJpaGateway.save(issue);
         } catch (Exception exception) {
             throw new IllegalStateException("Error when save issue");
