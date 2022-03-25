@@ -12,7 +12,6 @@ public class IssueUpdateUseCase implements IssueUpdateInputBoundary {
 
     private final IssueJpaGateway jpaGateway;
 
-
     @Override
     public void update(IssueUpdateRequest request, IssueUpdateOutputBoundary outputBoundary) throws NoDataFoundException {
         updateIssue(request);
@@ -25,21 +24,21 @@ public class IssueUpdateUseCase implements IssueUpdateInputBoundary {
         outputBoundary.present(response);
     }
 
-
     private void updateIssue(IssueUpdateRequest request) throws NoDataFoundException {
         Long issueId = request.getIssueId();
-        Issue issue = doGetIssueById(issueId);
-        issue.setIssueType(request.getIssueType());
-        issue.setDescription(request.getDescription());
-        issue.setSummary(request.getSummary());
-        jpaGateway.save(issue);
+        Optional<Issue> issue = doGetIssueById(issueId);
+        Issue newIssue = doMapNewIssue(request, issue);
+        jpaGateway.save(newIssue);
     }
 
-    private Issue doGetIssueById(Long issueId) throws NoDataFoundException {
-        Optional<Issue> issueById = jpaGateway.findById(issueId);
-        if (null == issueById || issueById.isEmpty()) {
-            throw new NoDataFoundException("No data found with issue id {} " + issueId);
-        }
-        return issueById.get();
+    private Issue doMapNewIssue(IssueUpdateRequest request, Optional<Issue> issue) {
+        return issue.map(ticket -> Issue.builder()
+                .issueType(request.getIssueType()).summary(request.getSummary()).description(request.getDescription()).build())
+                .orElse(null);
+    }
+
+    private Optional<Issue> doGetIssueById(Long issueId) throws NoDataFoundException {
+        return Optional.of(jpaGateway.findById(issueId)
+                .orElseThrow(() -> new NoDataFoundException("No data found with issue id {} " + issueId)));
     }
 }
